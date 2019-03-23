@@ -1,0 +1,13 @@
+{
+	"name": "split-outer",
+	"version": "1.0.0",
+	"description": "Split a string by delimiters but ignore contents inside parenthesis/brackets.",
+	"keywords": ["string", "split"],
+	"author": "Michel Helms <michelhelms@gmail.com>",
+	"license": "MIT",
+	"repository": "https://github.com/Badestrand/outer-split",
+	"main": "./index.js",
+	"scripts": {
+		"test": "node test.js"
+	}
+}
