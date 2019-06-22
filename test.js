@@ -29,8 +29,8 @@ assertEqual(splitOuter('abc, def'), ['abc', ' def'])
 assertEqual(splitOuter('abc,, def'), ['abc', '', ' def'])
 assertEqual(splitOuter('abc, ;def'), ['abc', ' ', 'def'])
 
-// Options 'trim' and 'noEmpties'
-assertEqual(splitOuter('abc, ;de, f', {trim: true, noEmpties: true}), ['abc', 'de', 'f'])
+// Options 'trim' and 'empties'
+assertEqual(splitOuter('abc, ;de, f', {trim: true, empties: false}), ['abc', 'de', 'f'])
 
 // Special delimiter
 assertEqual(splitOuter('lalalal', {separators: 'a'}), ['l', 'l', 'l', 'l'])
@@ -38,7 +38,7 @@ assertEqual(splitOuter('lalalal', {separators: 'a'}), ['l', 'l', 'l', 'l'])
 // Brackets
 assertEqual(splitOuter(
 	'Maude (smart, wise), Harold (funny, talkative); Higgins (France, California); ',
-	{trim: true, noEmpties: true}
+	{trim: true, empties: false}
 	), [
 		'Maude (smart, wise)',
 		'Harold (funny, talkative)',
@@ -58,7 +58,7 @@ assertEqual(splitOuter(
 	]
 )
 
-// Falty nesting
+// Faulty nesting
 assertEqual(splitOuter(
 	'this, (shoudl {,be) illegal},hm?',
 	), [

@@ -6,7 +6,7 @@
  * Split by separators like comma and semicolon but do not split if it is inside braces/brackets
  * 
  * @param text string Input text
- * @param options optional object with `noEmpties: true` if you want empty strings to be filtered out, `trim: true` if you want each entry to be whitespace trimmed and `separators: ',.;'` if you want custom separator characters (default is ',;')
+ * @param options optional object with `empties: false` if you want empty strings to be filtered out, `trim: true` if you want each entry to be whitespace trimmed and `separators: ',.;'` if you want custom separator characters (default is ',;')
  * 
  * Example:
  * splitOuter('หาxx, _[used as surp[r,i]se, intหาogation; suspicion]_, n2; n(x,x)หา3, n4', {trim: true})
@@ -19,9 +19,12 @@ function splitOuter(text, options) {
 	}
 
 	// Default parameters
-	options = typeof options==='object'? JSON.parse(JSON.stringify(options)) : {}
-	if (typeof options.separators!=='string') {
+	options = typeof options==='object' && options!==null? JSON.parse(JSON.stringify(options)) : {}
+	if (typeof options.separators !== 'string') {
 		options.separators = ',;'
+	}
+	if (typeof options.empties !== 'boolean') {
+		options.empties = true
 	}
 	// Check parameters
 	if (typeof text!=='string' || typeof options!=='object') {
@@ -54,7 +57,7 @@ function splitOuter(text, options) {
 	if (options.trim) {
 		parts = parts.map(function(part) {return part.trim()})
 	}
-	if (options.noEmpties) {
+	if (!options.empties) {
 		parts = parts.filter(function(part) {return part.length>0})
 	}
 

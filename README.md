@@ -22,7 +22,7 @@ Options are
 ```
 {
     separators: string,     // default ',;'
-    noEmpties: true/false,  // default false, discards empty entries
+    empties: true/false,    // default true, keeps empty entries
     trim: true/false        // default false, trims each entry
 }
 ```
@@ -33,7 +33,7 @@ Options are
 const splitOuter = require('split-outer')
 
 const text = 'Maude (smart, wise), Harold (funny, talkative); Higgins (France, California);'
-const parts = splitOuter(text, {trim: true, noEmpties: true})
+const parts = splitOuter(text, {trim: true, empties: false})
 // results in
 //	[
 //		'Maude (smart, wise)',
